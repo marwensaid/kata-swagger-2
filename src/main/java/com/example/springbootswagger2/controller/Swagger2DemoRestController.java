@@ -19,46 +19,29 @@ import io.swagger.annotations.ApiResponses;
 @RestController
 public class Swagger2DemoRestController {
 
+
+	// 2-create student List : name, class, country
 	List<Student> students = new ArrayList<Student>();
-	{
-		students.add(new Student("Sajal", "IV", "India"));
-		students.add(new Student("Lokesh", "V", "India"));
-		students.add(new Student("Kajal", "III", "USA"));
-		students.add(new Student("Sukesh", "VI", "USA"));
-	}
 
-	@ApiOperation(value = "Get list of Students in the System ", response = Iterable.class, tags = "getStudents")
-	@ApiResponses(value = { 
-			@ApiResponse(code = 200, message = "Suceess|OK"),
-			@ApiResponse(code = 401, message = "not authorized!"), 
-			@ApiResponse(code = 403, message = "forbidden!!!"),
-			@ApiResponse(code = 404, message = "not found!!!") })
+	// 5-add http response for getStudent operation : 200 / 401 / 403 / 404
 
+	// endpoint getStudent
 	@RequestMapping(value = "/getStudents")
 	public List<Student> getStudents() {
 		return students;
 	}
 
+	// Get Student by name
 	@ApiOperation(value = "Get specific Student in the System ", response = Student.class, tags = "getStudent")
 	@RequestMapping(value = "/getStudent/{name}")
 	public Student getStudent(@PathVariable(value = "name") String name) {
 		return students.stream().filter(x -> x.getName().equalsIgnoreCase(name)).collect(Collectors.toList()).get(0);
 	}
 
-	@ApiOperation(value = "Get specific Student By Country in the System ", response = Student.class, tags = "getStudentByCountry")
-	@RequestMapping(value = "/getStudentByCountry/{country}")
-	public List<Student> getStudentByCountry(@PathVariable(value = "country") String country) {
-		System.out.println("Searching Student in country : " + country);
-		List<Student> studentsByCountry = students.stream().filter(x -> x.getCountry().equalsIgnoreCase(country))
-				.collect(Collectors.toList());
-		System.out.println(studentsByCountry);
-		return studentsByCountry;
-	}
+	// 3-get Student by country
 
-	// @ApiOperation(value = "Get specific Student By Class in the System ",response = Student.class,tags="getStudentByClass")
-	@RequestMapping(value = "/getStudentByClass/{cls}")
-	public List<Student> getStudentByClass(@PathVariable(value = "cls") String cls) {
-		return students.stream().filter(x -> x.getCls().equalsIgnoreCase(cls)).collect(Collectors.toList());
-	}
+	// 4-get Student by class
+
+
 
 }
