@@ -12,9 +12,16 @@ public class Student {
 	@ApiModelProperty(notes = "Name of the Student",name="name",required=true,value="test name")
 	private String name;
 
-	public Student(String name) {
+	private String country;
+
+	public String getCountry() {
+		return country;
+	}
+
+	public Student(String name, String country) {
 		super();
 		this.name = name;
+		this.country = country;
 	}
 
 	public String getName() {
