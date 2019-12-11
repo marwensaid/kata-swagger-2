@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +31,14 @@ public class Swagger2DemoRestController {
     }
 
     // 5-add http response for getStudent operation : 200 / 401 / 403 / 404
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "ok"),
+            @ApiResponse(code = 401, message = "not auth"),
+            @ApiResponse(code = 403, message = "forbidden"),
+            @ApiResponse(code = 404, message = "not found")
+
+    })
+
 
     // endpoint getStudent
     @RequestMapping(value = "/getStudents")
@@ -47,16 +57,16 @@ public class Swagger2DemoRestController {
     @RequestMapping(value = "/getStudentByCountry/{country}")
     public List<Student> getStudentByCountry(@PathVariable(value = "country") String country) {
         List<Student> studentsByCountry = students.stream()
-				.filter(x -> x.getCountry()
-						.equalsIgnoreCase(country))
-				.collect(Collectors.toList());
+                .filter(x -> x.getCountry()
+                        .equalsIgnoreCase(country))
+                .collect(Collectors.toList());
 
         return studentsByCountry;
     }
 
     // 4-get Student by class
     @RequestMapping(value = "/getStudentByClass/{cls}")
-    public List<Student> getStudentByClass(@PathVariable(value = "cls") String cls){
+    public List<Student> getStudentByClass(@PathVariable(value = "cls") String cls) {
         List<Student> getStudentByClass = students.stream()
                 .filter(x -> x.getCls()
                         .equalsIgnoreCase(cls))
