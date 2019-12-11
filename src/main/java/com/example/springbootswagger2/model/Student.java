@@ -7,30 +7,38 @@ import io.swagger.annotations.ApiModelProperty;
 public class Student {
 
 
-	// 5- add swagger api model for all att
+    // 5- add swagger api model for all att
 
-	@ApiModelProperty(notes = "Name of the Student",name="name",required=true,value="test name")
-	private String name;
+    @ApiModelProperty(notes = "Name of the Student", name = "name", required = true, value = "test name")
+    private String name;
 
-	private String country;
+    private String country;
 
-	public String getCountry() {
-		return country;
-	}
+    private String cls;
 
-	public Student(String name, String country) {
-		super();
-		this.name = name;
-		this.country = country;
-	}
+    public Student(String name, String country, String cls) {
+        super();
+        this.name = name;
+        this.country = country;
+        this.cls = cls;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getCls() {
+        return cls;
+    }
 
-	@Override
-	public String toString() {
-		return "Student [name=" + name + "]";
-	}
+    public String getCountry() {
+        return country;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Student [name=" + name + ", cls=" + cls + ",country=" + country + "]";
+    }
 
 }
