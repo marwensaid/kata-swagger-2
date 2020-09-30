@@ -15,63 +15,40 @@ import com.example.springbootswagger2.model.Student;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(value = "Swagger2DemoRestController", description = "REST Apis related to Student Entity!!!!")
-@RestController
+// describe this class using @Api annotation from swagger
+// this is a Rest Controller
 public class Swagger2DemoRestController {
 
 
     // 2-create student List : name, class, country
-    List<Student> students = new ArrayList<Student>();
 
-    {
-        students.add(new Student("Sajal", "IV", "India"));
-        students.add(new Student("Lokesh", "V", "India"));
-        students.add(new Student("Kajal", "III", "USA"));
-        students.add(new Student("Sukesh", "VI", "USA"));
-    }
-
-    // 5-add http response for getStudent operation : 200 / 401 / 403 / 404
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "ok"),
-            @ApiResponse(code = 401, message = "not auth"),
-            @ApiResponse(code = 403, message = "forbidden"),
-            @ApiResponse(code = 404, message = "not found")
-
-    })
+    // 5-add http response for getStudent operation : 200 / 401 / 403 / 404 (use ApiResponses annotation)
 
 
-    // endpoint getStudent
-    @RequestMapping(value = "/getStudents")
-    public List<Student> getStudents() {
-        return students;
-    }
+    // endpoint getStudent (return student List)
 
     // Get Student by name
-    @ApiOperation(value = "Get specific Student in the System ", response = Student.class, tags = "getStudent")
+    // describe this endpoint using swagger
     @RequestMapping(value = "/getStudent/{name}")
     public Student getStudent(@PathVariable(value = "name") String name) {
-        return students.stream().filter(x -> x.getName().equalsIgnoreCase(name)).collect(Collectors.toList()).get(0);
+        // return student
+        return null;
     }
 
     // 3-get Student by country
     @RequestMapping(value = "/getStudentByCountry/{country}")
     public List<Student> getStudentByCountry(@PathVariable(value = "country") String country) {
-        List<Student> studentsByCountry = students.stream()
-                .filter(x -> x.getCountry()
-                        .equalsIgnoreCase(country))
-                .collect(Collectors.toList());
 
-        return studentsByCountry;
+        // impl this method  to getStudentByCountry
+        return null;
     }
 
     // 4-get Student by class
-    @RequestMapping(value = "/getStudentByClass/{cls}")
+    // attack EP
     public List<Student> getStudentByClass(@PathVariable(value = "cls") String cls) {
-        List<Student> getStudentByClass = students.stream()
-                .filter(x -> x.getCls()
-                        .equalsIgnoreCase(cls))
-                .collect(Collectors.toList());
 
-        return getStudentByClass;
+        // impl method to get Student by Class
+
+        return null;
     }
 }
