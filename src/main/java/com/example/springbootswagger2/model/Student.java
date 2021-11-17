@@ -1,8 +1,5 @@
 package com.example.springbootswagger2.model;
 
-import io.swagger.annotations.ApiModelProperty;
-
-
 // 1- complete student def : country and class
 public class Student {
 
