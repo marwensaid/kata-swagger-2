@@ -8,8 +8,8 @@ import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
-// this class enabled swagger 2
-// this is a config class
+// TODO enabled swagger 2
+// TODO : this is a config class
 public class Swagger2UiConfiguration extends WebMvcConfigurerAdapter  {
 
 	@Bean
